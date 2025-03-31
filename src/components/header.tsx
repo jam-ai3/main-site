@@ -1,5 +1,5 @@
 import { getSession, logout } from "@/lib/auth";
-import { Calendar, Grid, Notebook, Pencil } from "lucide-react";
+import { Grid, Notebook } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import {
