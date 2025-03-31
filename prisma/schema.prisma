@@ -1,0 +1,48 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  password      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  freeGenerates Int      @default(4)
+  paidGenerates Int      @default(0)
+  isAdmin       Boolean  @default(false)
+
+  subscriptions Subscription[]
+  sales         Sale[]
+}
+
+model Subscription {
+  id            String   @id @default(uuid())
+  createdAt     DateTime @default(now())
+  expiresAt     DateTime
+  generatesUsed Int      @default(0)
+  type          String
+  isActive      Boolean  @default(true)
+  stripeId      String   @unique
+
+  userId String @unique
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Sale {
+  id                 String   @id @default(uuid())
+  productId          String
+  userId             String
+  pricePaidInPennies Int
+  createdAt          DateTime @default(now())
+  couponCode         String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: NoAction)
+}
