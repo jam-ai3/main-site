@@ -14,14 +14,6 @@ export type Product = {
 };
 
 export const PRODUCTS: Record<string, Product> = {
-  // single: {
-  //   id: "0",
-  //   name: "Single Generate",
-  //   description: "A one-time purchase of a single use of flashcards generator",
-  //   priceInPennies: 99,
-  //   isSubscription: false,
-  //   subscriptionInterval: "year",
-  // },
   monthly: {
     id: "1",
     name: "Monthly Subscription",

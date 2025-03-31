@@ -50,7 +50,7 @@ export default async function Header() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuGroup>
-                    <DropdownMenuItem>
+                    {/* <DropdownMenuItem>
                       <Link
                         href="https://write.jamai.dev"
                         target="_blank"
@@ -59,7 +59,7 @@ export default async function Header() {
                         <Pencil />
                         <span>Write</span>
                       </Link>
-                    </DropdownMenuItem>
+                    </DropdownMenuItem> */}
                     <DropdownMenuItem>
                       <Link
                         href="https://study.jamai.dev"
@@ -70,7 +70,7 @@ export default async function Header() {
                         <span>Study</span>
                       </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    {/* <DropdownMenuItem>
                       <Link
                         href="https://plan.jamai.dev"
                         target="_blank"
@@ -79,7 +79,7 @@ export default async function Header() {
                         <Calendar />
                         <span>Plan</span>
                       </Link>
-                    </DropdownMenuItem>
+                    </DropdownMenuItem> */}
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
