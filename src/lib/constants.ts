@@ -1,5 +1,6 @@
 export const AUTH_REDIRECT_PATH = "/";
 export const UNAUTH_REDIRECT_PATH = "/login";
+export const WEEK_IN_MS = 1000 * 60 * 60 * 24 * 7;
 export const MONTH_IN_MS = 1000 * 60 * 60 * 24 * 30;
 export const YEAR_IN_MS = 1000 * 60 * 60 * 24 * 365;
 

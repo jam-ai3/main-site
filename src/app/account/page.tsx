@@ -3,8 +3,30 @@ import Header from "@/components/header";
 import InfoLine from "@/components/info-line";
 import db from "@/db/db";
 import { getSession } from "@/lib/auth";
-import { UNAUTH_REDIRECT_PATH } from "@/lib/constants";
+import { UNAUTH_REDIRECT_PATH, WEEK_IN_MS } from "@/lib/constants";
+import { capitalize } from "@/lib/utils";
+import { Subscription, User } from "@prisma/client";
 import { redirect } from "next/navigation";
+
+function formatSubscriptionType(user: User, subscription: Subscription | null) {
+  if (subscription && subscription.expiresAt.getTime() > Date.now())
+    return capitalize(subscription.type);
+  return user.createdAt.getTime() + WEEK_IN_MS > Date.now()
+    ? "Free Trial"
+    : "None";
+}
+
+function formatSubscriptionExpires(
+  user: User,
+  subscription: Subscription | null
+) {
+  if (subscription && subscription.expiresAt.getTime() > Date.now())
+    return subscription.expiresAt.toLocaleDateString();
+  const freeTrial = user.createdAt.getTime() + WEEK_IN_MS;
+  return freeTrial > Date.now()
+    ? new Date(freeTrial).toLocaleDateString()
+    : "N/A";
+}
 
 export default async function AccountPage() {
   const session = await getSession();
@@ -22,10 +44,13 @@ export default async function AccountPage() {
         <h1 className="font-bold text-2xl">Your Account</h1>
         <div className="w-2/3 space-y-6">
           <InfoLine label="Email" value={user.email} />
-          <InfoLine label="Subscription" value={subscription?.type ?? "None"} />
+          <InfoLine
+            label="Subscription"
+            value={formatSubscriptionType(user, subscription)}
+          />
           <InfoLine
             label="Subscription Expires"
-            value={subscription?.expiresAt.toLocaleDateString() ?? "N/A"}
+            value={formatSubscriptionExpires(user, subscription)}
           />
           <InfoLine
             label="Subscription Renews"

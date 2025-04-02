@@ -1,5 +1,7 @@
+import { Subscription, User } from "@prisma/client";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { WEEK_IN_MS } from "./constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -51,4 +53,15 @@ export function formatPercent(num: number) {
     maximumFractionDigits: 2,
   });
   return formatter.format(num);
+}
+
+export function capitalize(text: string) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+export function isSubscribed(user: User, subscription: Subscription | null) {
+  return (
+    (subscription && subscription.expiresAt.getTime() > Date.now()) ||
+    user.createdAt.getTime() + WEEK_IN_MS > Date.now()
+  );
 }
