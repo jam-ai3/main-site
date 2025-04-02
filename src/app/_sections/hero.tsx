@@ -10,6 +10,8 @@ export default async function HeroSection() {
       style={{
         backgroundImage: "url('/hero-bg-3.jpg')",
         backgroundSize: "cover",
+        // start image at bottom
+        backgroundPositionY: "bottom",
       }}
     >
       <div className="flex flex-col gap-6 items-center">
@@ -18,7 +20,7 @@ export default async function HeroSection() {
         </p>
         <h1 className="text-4xl font-bold">AI Tools for Students</h1>
         <p className="text-muted-foreground text-lg max-w-3xl text-center">
-          Prepare for you classes with a suite of AI-powered tools designed to
+          Prepare for your classes with a suite of AI-powered tools designed to
           help you take on your courses with ease
         </p>
         <div className="flex gap-4">
