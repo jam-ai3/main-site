@@ -27,8 +27,6 @@ export async function handleLogin(_: unknown, data: FormData) {
   const token = await signToken({
     id: user.id,
     email: user.email,
-    freeGenerates: user.freeGenerates,
-    paidGenerates: user.paidGenerates,
     isAdmin: user.isAdmin,
   });
 
@@ -74,8 +72,6 @@ export async function handleRegister(_: unknown, data: FormData) {
   const token = await signToken({
     id: newUser.id,
     email: newUser.email,
-    freeGenerates: newUser.freeGenerates,
-    paidGenerates: newUser.paidGenerates,
     isAdmin: newUser.isAdmin,
   });
 

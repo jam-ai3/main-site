@@ -38,9 +38,6 @@ export async function POST(req: NextRequest) {
     const stripeId = charge.subscription as string | undefined;
 
     switch (productId) {
-      case PRODUCTS.single.id:
-        await handleSinglePayment(userId, total, code);
-        break;
       case PRODUCTS.monthly.id:
         if (!stripeId) return new NextResponse(null, { status: 400 });
         await handleMonthlyPayment(userId, stripeId, total, code);
@@ -73,27 +70,6 @@ export async function POST(req: NextRequest) {
   }
 
   return new NextResponse(null, { status: 200 });
-}
-
-async function handleSinglePayment(
-  userId: string,
-  total: number,
-  couponCode?: string
-) {
-  await Promise.all([
-    db.sale.create({
-      data: {
-        userId,
-        productId: PRODUCTS.single.id,
-        pricePaidInPennies: total,
-        couponCode,
-      },
-    }),
-    db.user.update({
-      where: { id: userId },
-      data: { paidGenerates: { increment: 1 } },
-    }),
-  ]);
 }
 
 async function handleMonthlyPayment(

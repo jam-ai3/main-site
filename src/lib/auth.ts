@@ -10,8 +10,6 @@ const SECRET_KEY = new TextEncoder().encode(process.env.JWT_SECRET!);
 type User = {
   id: string;
   email: string;
-  freeGenerates: number;
-  paidGenerates: number;
   isAdmin: boolean;
 };
 
