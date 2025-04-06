@@ -11,7 +11,8 @@ import { redirect } from "next/navigation";
 function formatSubscriptionType(user: User, subscription: Subscription | null) {
   if (subscription && subscription.expiresAt.getTime() > Date.now())
     return capitalize(subscription.type);
-  return user.createdAt.getTime() + WEEK_IN_MS > Date.now()
+  return user.freeTrialStart &&
+    user.freeTrialStart.getTime() + WEEK_IN_MS > Date.now()
     ? "Free Trial"
     : "None";
 }
@@ -22,10 +23,10 @@ function formatSubscriptionExpires(
 ) {
   if (subscription && subscription.expiresAt.getTime() > Date.now())
     return subscription.expiresAt.toLocaleDateString();
-  const freeTrial = user.createdAt.getTime() + WEEK_IN_MS;
-  return freeTrial > Date.now()
-    ? new Date(freeTrial).toLocaleDateString()
-    : "N/A";
+  if (user.freeTrialStart === null) return "N/A";
+  return new Date(
+    user.freeTrialStart.getTime() + WEEK_IN_MS
+  ).toLocaleDateString();
 }
 
 export default async function AccountPage() {

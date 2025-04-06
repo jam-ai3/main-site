@@ -39,13 +39,11 @@ export default async function Header() {
         <ul className="flex justify-self-end gap-2">
           {isAuthenticated ? (
             <>
-              <Button onClick={logout} size="sm">
-                Logout
-              </Button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button size="sm" variant="accent">
                     <Grid />
+                    <span>Apps</span>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>

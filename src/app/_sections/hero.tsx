@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { getSession } from "@/lib/auth";
 import { ArrowRight, Book } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
 export default async function HeroSection() {
+  const session = await getSession();
+
   return (
     <section
       className="h-screen grid place-items-center"
@@ -31,7 +34,7 @@ export default async function HeroSection() {
             </Link>
           </Button>
           <Button asChild variant="accent">
-            <Link href="/register">
+            <Link href={session ? "/pricing" : "/register"}>
               <span>Get Started</span>
               <ArrowRight />
             </Link>

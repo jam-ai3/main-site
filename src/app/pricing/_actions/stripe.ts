@@ -47,7 +47,7 @@ export async function cancelSubscription(stripeId: string) {
       where: { stripeId },
       data: { isActive: false },
     });
-    redirect("/plan");
+    redirect("/pricing");
   } catch (error) {
     console.error(error);
   }

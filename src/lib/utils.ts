@@ -19,6 +19,7 @@ export function isError<T>(response: T | CustomError): response is CustomError {
 }
 
 export function exportCsv(string: string) {
+  if (!string || string.length === 0) return;
   const blob = new Blob([string], { type: "text/csv" });
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -62,6 +63,7 @@ export function capitalize(text: string) {
 export function isSubscribed(user: User, subscription: Subscription | null) {
   return (
     (subscription && subscription.expiresAt.getTime() > Date.now()) ||
-    user.createdAt.getTime() + WEEK_IN_MS > Date.now()
+    (user.freeTrialStart &&
+      user.freeTrialStart.getTime() + WEEK_IN_MS > Date.now())
   );
 }

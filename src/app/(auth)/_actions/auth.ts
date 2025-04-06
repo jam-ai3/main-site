@@ -2,7 +2,7 @@
 
 import db from "@/db/db";
 import { hashPassword, signToken, verifyPassword } from "@/lib/auth";
-import { AUTH_REDIRECT_PATH } from "@/lib/constants";
+import { ACCOUNT_PATH, AUTH_REDIRECT_PATH } from "@/lib/constants";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -85,5 +85,5 @@ export async function handleRegister(_: unknown, data: FormData) {
     path: "/",
   });
 
-  redirect(AUTH_REDIRECT_PATH);
+  redirect(ACCOUNT_PATH);
 }

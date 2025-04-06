@@ -17,12 +17,14 @@ type ProductCardProps = {
   product: Product;
   userId?: string;
   isSubscribed?: boolean;
+  onClick?: () => void;
 };
 
 export default function ProductCard({
   product,
   userId,
   isSubscribed,
+  onClick,
 }: ProductCardProps) {
   async function handlePurchase() {
     if (!userId) redirect(UNAUTH_REDIRECT_PATH);
@@ -50,7 +52,7 @@ export default function ProductCard({
       <CardFooter className="mt-auto">
         <Button
           className="w-full"
-          onClick={handlePurchase}
+          onClick={onClick || handlePurchase}
           disabled={isSubscribed}
           variant="accent"
         >

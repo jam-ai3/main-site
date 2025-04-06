@@ -1,5 +1,6 @@
 export const AUTH_REDIRECT_PATH = "/";
 export const UNAUTH_REDIRECT_PATH = "/login";
+export const ACCOUNT_PATH = "/account";
 export const WEEK_IN_MS = 1000 * 60 * 60 * 24 * 7;
 export const MONTH_IN_MS = 1000 * 60 * 60 * 24 * 30;
 export const YEAR_IN_MS = 1000 * 60 * 60 * 24 * 365;
@@ -12,6 +13,15 @@ export type Product = {
   isSubscription: boolean;
   subscriptionInterval: "day" | "week" | "month" | "year";
   discount?: number;
+};
+
+export const FREE_TRIAL: Product = {
+  id: "0",
+  name: "Free Trial",
+  description: "Unlimited use of flashcards generator for a one-week period",
+  priceInPennies: 0,
+  isSubscription: false,
+  subscriptionInterval: "week",
 };
 
 export const PRODUCTS: Record<string, Product> = {
