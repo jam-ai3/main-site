@@ -1,4 +1,4 @@
-import { getSession, logout } from "@/lib/auth";
+import { getSession } from "@/lib/auth";
 import { Grid, Notebook } from "lucide-react";
 import Link from "next/link";
 import { Button } from "./ui/button";
