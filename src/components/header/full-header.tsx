@@ -1,23 +1,22 @@
-import { getSession } from "@/lib/auth";
+"use client";
+
 import { Grid, Notebook } from "lucide-react";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import Image from "next/image";
+import HeaderLink from "./header-link";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuGroup,
-} from "./ui/dropdown-menu";
-import Image from "next/image";
-import HeaderLink from "./header-link";
+  DropdownMenuItem,
+} from "../ui/dropdown-menu";
+import { Button } from "../ui/button";
+import { HeaderProps } from "./client-header";
 
 const LOGO_SIZE = 64;
 
-export default async function Header() {
-  const session = await getSession();
-  const isAuthenticated = !!session?.id;
-
+export default function FullHeader({ isAuthenticated }: HeaderProps) {
   return (
     <header className="py-4 fixed top-0 left-0 right-0 px-6 backdrop-blur-md">
       <nav className="grid grid-cols-3 items-center">
@@ -58,7 +57,7 @@ export default async function Header() {
                         <span>Write</span>
                       </Link>
                     </DropdownMenuItem> */}
-                    <DropdownMenuItem>
+                    <DropdownMenuItem asChild>
                       <Link
                         href="https://study.jamai.dev"
                         target="_blank"

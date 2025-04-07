@@ -22,7 +22,7 @@ export default async function HeroSection() {
           Write, study, organize
         </p>
         <h1 className="text-4xl font-bold">AI Tools for Students</h1>
-        <p className="text-muted-foreground text-lg max-w-3xl text-center">
+        <p className="text-muted-foreground text-lg max-w-3xl text-center mx-8 md:mx-0">
           Prepare for your classes with a suite of AI-powered tools designed to
           help you take on your courses with ease
         </p>

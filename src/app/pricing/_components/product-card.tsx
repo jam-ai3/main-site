@@ -34,7 +34,7 @@ export default function ProductCard({
   }
 
   return (
-    <Card key={product.id} className="max-w-1/3 relative">
+    <Card key={product.id} className="md:max-w-1/3 relative">
       <CardHeader>
         <CardTitle className="text-4xl font-bold">
           {formatPrice(product.priceInPennies)}
@@ -45,7 +45,7 @@ export default function ProductCard({
           </p>
         )}
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 pb-16">
         <p className="font-semibold text-lg">{product.name}</p>
         <p className="text-muted-foreground">{product.description}</p>
       </CardContent>

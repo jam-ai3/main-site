@@ -83,7 +83,7 @@ export function ContactForm({ title, description }: ContactFormProps) {
       )}
       <CardContent>
         <form action={action} className="space-y-4">
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-col md:flex-row">
             <div className="space-y-2 flex-1">
               <Label htmlFor="name">Name</Label>
               <Input id="name" type="text" placeholder="John Doe" name="name" />
@@ -110,6 +110,7 @@ export function ContactForm({ title, description }: ContactFormProps) {
             type="submit"
             disabled={sendStatus !== "none"}
             variant="accent"
+            className="w-full md:w-fit"
           >
             {getButtonIcon()}
             <span>{getButtonText()}</span>

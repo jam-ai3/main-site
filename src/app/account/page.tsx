@@ -1,5 +1,5 @@
 import Footer from "@/components/footer";
-import Header from "@/components/header";
+import Header from "@/components/header/header";
 import InfoLine from "@/components/info-line";
 import db from "@/db/db";
 import { getSession } from "@/lib/auth";

@@ -1,12 +1,12 @@
 import Footer from "@/components/footer";
-import Header from "@/components/header";
+import Header from "@/components/header/header";
 import { ContactForm } from "./_components/contact-form";
 
 export default function ContactPage() {
   return (
     <>
       <Header />
-      <main className="grid grid-cols-[1fr_4fr_1fr] items-center h-screen">
+      <main className="grid grid-cols-[1fr_10fr_1fr] md:grid-cols-[1fr_4fr_1fr] items-center h-screen">
         <div />
         <ContactForm
           title="Contact Us"

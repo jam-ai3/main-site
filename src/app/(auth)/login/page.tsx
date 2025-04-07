@@ -15,7 +15,7 @@ export default function LoginPage() {
     <main className="h-screen grid place-items-center bg-secondary">
       <form
         action={action}
-        className="bg-background rounded-md p-6 flex flex-col gap-4 w-2/5"
+        className="bg-background rounded-md p-6 flex flex-col gap-4 w-3/4 md:w-2/5"
       >
         <h1 className="mx-auto font-bold text-2xl">Login</h1>
         <div className="flex flex-col gap-2">
