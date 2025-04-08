@@ -7,6 +7,7 @@ import { Loader, LogIn } from "lucide-react";
 import { useActionState } from "react";
 import { handleLogin } from "../_actions/auth";
 import AccentLink from "@/components/accent-link";
+import GoogleSignInButton from "../_components/google-button";
 
 export default function LoginPage() {
   const [error, action, isPending] = useActionState(handleLogin, {});
@@ -55,6 +56,7 @@ export default function LoginPage() {
             </>
           )}
         </Button>
+        <GoogleSignInButton />
         <div className="flex gap-1 text-sm">
           <p className="text-muted-foreground">Don&apos;t have an account?</p>
           <AccentLink href="/register">Register</AccentLink>
