@@ -11,15 +11,15 @@ export default function GoogleSignInButton() {
     document.body.appendChild(script);
   }, []);
 
-  function handleGoogleLogin(response: any) {
-    fetch("/api/auth/google", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token: response.credential }),
-    }).then(() => {
-      window.location.href = "/"; // Redirect after login
-    });
-  }
+  // function handleGoogleLogin(response: any) {
+  //   fetch("/api/auth/google", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ token: response.credential }),
+  //   }).then(() => {
+  //     window.location.href = "/"; // Redirect after login
+  //   });
+  // }
 
   return (
     <div>
