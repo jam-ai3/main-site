@@ -2,6 +2,14 @@
 
 import { useEffect } from "react";
 
+declare global {
+  interface Window {
+    handleGoogleLogin: (
+      response: google.accounts.id.CredentialResponse
+    ) => void;
+  }
+}
+
 export default function GoogleSignInButton() {
   useEffect(() => {
     /* Load Google's OAuth script */
@@ -11,15 +19,17 @@ export default function GoogleSignInButton() {
     document.body.appendChild(script);
   }, []);
 
-  // function handleGoogleLogin(response: any) {
-  //   fetch("/api/auth/google", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({ token: response.credential }),
-  //   }).then(() => {
-  //     window.location.href = "/"; // Redirect after login
-  //   });
-  // }
+  window.handleGoogleLogin = (
+    response: google.accounts.id.CredentialResponse
+  ) => {
+    fetch("/api/auth/google", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token: response.credential }),
+    }).then(() => {
+      window.location.href = "/"; // Redirect after login
+    });
+  };
 
   return (
     <div>
