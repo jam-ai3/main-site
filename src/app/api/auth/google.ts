@@ -3,6 +3,8 @@ import { OAuth2Client } from "google-auth-library";
 import db from "@/db/db";
 import { signToken } from "@/lib/auth";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { AUTH_REDIRECT_PATH } from "@/lib/constants";
 
 const client = new OAuth2Client(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
 
@@ -46,7 +48,7 @@ export async function POST(req: NextRequest) {
       path: "/",
     });
 
-    return NextResponse.json({ success: true });
+    redirect(AUTH_REDIRECT_PATH);
   } catch (error) {
     console.error(error);
     return NextResponse.json(

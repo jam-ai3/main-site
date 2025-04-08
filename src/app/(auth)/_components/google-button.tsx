@@ -6,7 +6,7 @@ declare global {
   interface Window {
     handleGoogleLogin: (
       response: google.accounts.id.CredentialResponse
-    ) => void;
+    ) => Promise<void>;
   }
 }
 
@@ -19,15 +19,13 @@ export default function GoogleSignInButton() {
     document.body.appendChild(script);
   }, []);
 
-  window.handleGoogleLogin = (
+  window.handleGoogleLogin = async (
     response: google.accounts.id.CredentialResponse
   ) => {
-    fetch("/api/auth/google", {
+    await fetch("/api/auth/google", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token: response.credential }),
-    }).then(() => {
-      window.location.href = "/"; // Redirect after login
     });
   };
 
