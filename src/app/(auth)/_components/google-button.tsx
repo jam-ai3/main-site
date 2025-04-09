@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { handleGoogleLogin } from "../_actions/google";
+import { ROOT_PATH } from "@/lib/constants";
 
 declare global {
   interface Window {
@@ -23,7 +24,11 @@ export default function GoogleSignInButton() {
   window.handleGoogleLogin = async (
     response: google.accounts.id.CredentialResponse
   ) => {
-    await handleGoogleLogin(response.credential);
+    try {
+      await handleGoogleLogin(response.credential);
+    } finally {
+      window.location.replace(ROOT_PATH);
+    }
   };
 
   return (
