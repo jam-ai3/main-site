@@ -1,3 +1,5 @@
+"use server";
+
 import { NextRequest, NextResponse } from "next/server";
 import { OAuth2Client } from "google-auth-library";
 import db from "@/db/db";
@@ -8,11 +10,12 @@ import { AUTH_REDIRECT_PATH } from "@/lib/constants";
 
 const client = new OAuth2Client(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
 
-export async function POST(req: NextRequest) {
+export async function handleGoogleLogin(
+  response: google.accounts.id.CredentialResponse
+) {
   try {
-    const { token } = await req.json();
     const ticket = await client.verifyIdToken({
-      idToken: token,
+      idToken: response.credential,
       audience: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
     });
 

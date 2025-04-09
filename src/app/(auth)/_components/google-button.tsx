@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { handleGoogleLogin } from "../_actions/google";
 
 declare global {
   interface Window {
@@ -22,11 +23,7 @@ export default function GoogleSignInButton() {
   window.handleGoogleLogin = async (
     response: google.accounts.id.CredentialResponse
   ) => {
-    await fetch("/api/auth/google", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token: response.credential }),
-    });
+    await handleGoogleLogin(response);
   };
 
   return (
