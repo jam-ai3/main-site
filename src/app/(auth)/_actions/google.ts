@@ -10,12 +10,10 @@ import { AUTH_REDIRECT_PATH } from "@/lib/constants";
 
 const client = new OAuth2Client(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
 
-export async function handleGoogleLogin(
-  response: google.accounts.id.CredentialResponse
-) {
+export async function handleGoogleLogin(token: string) {
   try {
     const ticket = await client.verifyIdToken({
-      idToken: response.credential,
+      idToken: token,
       audience: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
     });
 
