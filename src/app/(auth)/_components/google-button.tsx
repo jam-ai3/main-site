@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { handleGoogleLogin } from "../_actions/google";
-import { AUTH_REDIRECT_PATH } from "@/lib/constants";
 
 declare global {
   interface Window {
