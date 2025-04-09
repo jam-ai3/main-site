@@ -24,7 +24,6 @@ export default function GoogleSignInButton() {
     response: google.accounts.id.CredentialResponse
   ) => {
     await handleGoogleLogin(response.credential);
-    location.reload();
   };
 
   return (
