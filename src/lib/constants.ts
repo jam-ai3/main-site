@@ -1,3 +1,4 @@
+export const ROOT_PATH = "https://jamai.dev";
 export const AUTH_REDIRECT_PATH = "/";
 export const UNAUTH_REDIRECT_PATH = "/login";
 export const ACCOUNT_PATH = "/account";

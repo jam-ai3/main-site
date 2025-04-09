@@ -4,7 +4,7 @@ import { OAuth2Client } from "google-auth-library";
 import db from "@/db/db";
 import { signToken } from "@/lib/auth";
 import { cookies } from "next/headers";
-import { AUTH_REDIRECT_PATH } from "@/lib/constants";
+import { ROOT_PATH } from "@/lib/constants";
 import { NextResponse } from "next/server";
 
 const client = new OAuth2Client(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
@@ -47,5 +47,5 @@ export async function handleGoogleLogin(token: string) {
     path: "/",
   });
 
-  return NextResponse.redirect(AUTH_REDIRECT_PATH);
+  return NextResponse.redirect(ROOT_PATH);
 }
