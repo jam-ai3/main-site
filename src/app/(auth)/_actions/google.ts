@@ -1,6 +1,6 @@
 "use server";
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { OAuth2Client } from "google-auth-library";
 import db from "@/db/db";
 import { signToken } from "@/lib/auth";
