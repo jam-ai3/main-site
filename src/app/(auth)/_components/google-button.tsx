@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { handleGoogleLogin } from "../_actions/google";
-import { useRouter } from "next/router";
 import { AUTH_REDIRECT_PATH } from "@/lib/constants";
 
 declare global {
@@ -14,8 +13,6 @@ declare global {
 }
 
 export default function GoogleSignInButton() {
-  const router = useRouter();
-
   useEffect(() => {
     /* Load Google's OAuth script */
     const script = document.createElement("script");
@@ -28,7 +25,7 @@ export default function GoogleSignInButton() {
     response: google.accounts.id.CredentialResponse
   ) => {
     await handleGoogleLogin(response.credential);
-    router.replace(AUTH_REDIRECT_PATH);
+    window.location.replace(AUTH_REDIRECT_PATH);
   };
 
   return (
