@@ -18,9 +18,9 @@ const LOGO_SIZE = 64;
 
 export default function FullHeader({ isAuthenticated }: HeaderProps) {
   return (
-    <header className="py-4 fixed top-0 left-0 right-0 px-6 backdrop-blur-md">
-      <nav className="grid grid-cols-3 items-center">
-        <Link href="/" className="justify-self-start flex gap-2 items-center">
+    <header className="top-0 right-0 left-0 fixed backdrop-blur-md px-6 py-4">
+      <nav className="items-center grid grid-cols-3">
+        <Link href="/" className="flex justify-self-start items-center gap-2">
           <Image
             src="/logo-no-bg.png"
             alt="logo"
@@ -29,11 +29,12 @@ export default function FullHeader({ isAuthenticated }: HeaderProps) {
           />
           <span className="font-semibold text-xl">JAMAi</span>
         </Link>
-        <ul className="flex gap-6 justify-self-center text-sm text-muted-foreground">
+        <ul className="flex justify-self-center gap-6 text-muted-foreground text-sm">
           {/* <HeaderLink href="/about" title="About" /> */}
           <HeaderLink href="/pricing" title="Pricing" />
           <HeaderLink href="/contact" title="Contact" />
           {isAuthenticated && <HeaderLink href="/account" title="Account" />}
+          {isAuthenticated && <HeaderLink href="/feedback" title="Feedback" />}
         </ul>
         <ul className="flex justify-self-end gap-2">
           {isAuthenticated ? (
@@ -51,7 +52,7 @@ export default function FullHeader({ isAuthenticated }: HeaderProps) {
                       <Link
                         href="https://write.jamai.dev"
                         target="_blank"
-                        className="flex gap-2 items-center"
+                        className="flex items-center gap-2"
                       >
                         <Pencil />
                         <span>Write</span>
@@ -61,7 +62,7 @@ export default function FullHeader({ isAuthenticated }: HeaderProps) {
                       <Link
                         href="https://study.jamai.dev"
                         target="_blank"
-                        className="flex gap-2 items-center"
+                        className="flex items-center gap-2"
                       >
                         <Notebook />
                         <span>Study</span>
@@ -71,7 +72,7 @@ export default function FullHeader({ isAuthenticated }: HeaderProps) {
                       <Link
                         href="https://plan.jamai.dev"
                         target="_blank"
-                        className="flex gap-2 items-center"
+                        className="flex items-center gap-2"
                       >
                         <Calendar />
                         <span>Plan</span>

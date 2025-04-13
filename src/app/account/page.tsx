@@ -7,6 +7,7 @@ import { UNAUTH_REDIRECT_PATH, WEEK_IN_MS } from "@/lib/constants";
 import { capitalize } from "@/lib/utils";
 import { Subscription, User } from "@prisma/client";
 import { redirect } from "next/navigation";
+import LogoutButton from "./_components/logout-button";
 
 function formatSubscriptionType(user: User, subscription: Subscription | null) {
   if (subscription && subscription.expiresAt.getTime() > Date.now())
@@ -41,9 +42,9 @@ export default async function AccountPage() {
   return (
     <>
       <Header />
-      <main className="h-screen pt-36 flex flex-col items-center gap-6">
+      <main className="flex flex-col items-center gap-6 pt-36 h-screen">
         <h1 className="font-bold text-2xl">Your Account</h1>
-        <div className="w-2/3 space-y-6">
+        <div className="space-y-6 w-2/3">
           <InfoLine label="Email" value={user.email} />
           <InfoLine
             label="Subscription"
@@ -63,6 +64,7 @@ export default async function AccountPage() {
                 : "No"
             }
           />
+          <LogoutButton />
         </div>
       </main>
       <Footer absolute />

@@ -19,6 +19,7 @@ model User {
 
   subscriptions Subscription[]
   sales         Sale[]
+  reviews       Review[]
 }
 
 model Subscription {
@@ -44,4 +45,15 @@ model Sale {
   couponCode         String?
 
   user User @relation(fields: [userId], references: [id], onDelete: NoAction)
+}
+
+model Review {
+  id        String   @id @default(uuid())
+  rating    Int
+  message   String
+  createdAt DateTime @default(now())
+
+  userId String @unique
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
