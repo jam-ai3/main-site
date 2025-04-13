@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Loader2, Star } from "lucide-react";
+import { CheckCircle, Loader2, Star } from "lucide-react";
 import { useActionState, useState } from "react";
 import { createReview } from "../_actions/review";
 
@@ -12,9 +12,13 @@ export type Rating = 1 | 2 | 3 | 4 | 5;
 
 type FeedbackFormProps = {
   userId: string;
+  disabled?: boolean;
 };
 
-export default function FeedbackForm({ userId }: FeedbackFormProps) {
+export default function FeedbackForm({
+  userId,
+  disabled = false,
+}: FeedbackFormProps) {
   const [rating, setRating] = useState<Rating | null>(null);
   const [message, setMessage] = useState<string>("");
   const [error, action, isPending] = useActionState(
@@ -30,7 +34,7 @@ export default function FeedbackForm({ userId }: FeedbackFormProps) {
   return (
     <form
       action={action}
-      className="flex flex-col place-self-center gap-4 bg-secondary mt-48 mb-16 p-4 border-2 rounded-md w-1/2"
+      className="relative flex flex-col place-self-center gap-4 bg-secondary mt-48 mb-16 p-4 border-2 rounded-md w-1/2 overflow-hidden"
     >
       <div>
         <p className="font-semibold text-lg">Rate us</p>
@@ -57,6 +61,12 @@ export default function FeedbackForm({ userId }: FeedbackFormProps) {
         )}
       </Button>
       {error.error && <p className="text-destructive">{error.error}</p>}
+      {disabled && (
+        <div className="absolute inset-0 flex justify-center items-center gap-2 backdrop-blur-md">
+          <CheckCircle />
+          <span className="font-semibold">You have already rated</span>
+        </div>
+      )}
     </form>
   );
 }
