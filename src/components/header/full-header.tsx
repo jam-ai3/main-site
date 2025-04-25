@@ -1,6 +1,6 @@
 "use client";
 
-import { Grid, Notebook } from "lucide-react";
+import { Grid, Notebook, Pencil } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import HeaderLink from "./header-link";
@@ -18,7 +18,7 @@ const LOGO_SIZE = 64;
 
 export default function FullHeader({ isAuthenticated }: HeaderProps) {
   return (
-    <header className="top-0 right-0 left-0 fixed backdrop-blur-md px-6 py-4">
+    <header className="top-0 right-0 left-0 z-10 fixed backdrop-blur-md px-6 py-4">
       <nav className="items-center grid grid-cols-3">
         <Link href="/" className="flex justify-self-start items-center gap-2">
           <Image
@@ -48,7 +48,7 @@ export default function FullHeader({ isAuthenticated }: HeaderProps) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuGroup>
-                    {/* <DropdownMenuItem>
+                    <DropdownMenuItem>
                       <Link
                         href="https://write.jamai.dev"
                         target="_blank"
@@ -57,7 +57,7 @@ export default function FullHeader({ isAuthenticated }: HeaderProps) {
                         <Pencil />
                         <span>Write</span>
                       </Link>
-                    </DropdownMenuItem> */}
+                    </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                       <Link
                         href="https://study.jamai.dev"

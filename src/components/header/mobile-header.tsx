@@ -19,9 +19,9 @@ const LOGO_SIZE = 64;
 
 export default function FullHeader({ isAuthenticated }: HeaderProps) {
   return (
-    <header className="py-4 fixed top-0 left-0 right-0 px-6 backdrop-blur-md">
+    <header className="top-0 right-0 left-0 z-10 fixed backdrop-blur-md px-6 py-4">
       <nav className="flex justify-between items-center">
-        <Link href="/" className="flex gap-2 items-center">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src="/logo-no-bg.png"
             alt="logo"
@@ -74,6 +74,11 @@ export default function FullHeader({ isAuthenticated }: HeaderProps) {
             </DropdownMenuGroup>
             <DropdownMenuGroup>
               <DropdownMenuLabel>Apps</DropdownMenuLabel>
+              <DropdownMenuItem asChild>
+                <Link href="https://write.jamai.dev" target="_blank">
+                  <span>Write</span>
+                </Link>
+              </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href="https://study.jamai.dev" target="_blank">
                   <span>Study</span>
