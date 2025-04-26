@@ -70,6 +70,13 @@ export default function FullHeader({ isAuthenticated }: HeaderProps) {
                   </Link>
                 </DropdownMenuItem>
               )}
+              {isAuthenticated && (
+                <DropdownMenuItem asChild>
+                  <Link href="/feedback">
+                    <span>Feedback</span>
+                  </Link>
+                </DropdownMenuItem>
+              )}
               <DropdownMenuSeparator />
             </DropdownMenuGroup>
             <DropdownMenuGroup>
