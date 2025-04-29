@@ -1,7 +1,7 @@
 import { Subscription, User } from "@prisma/client";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { FREE_TRIAL_END, WEEK_IN_MS } from "./constants";
+import { FREE_TRIAL_END } from "./constants";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -63,7 +63,7 @@ export function capitalize(text: string) {
 export function isSubscribed(user: User, subscription: Subscription | null) {
   return (
     (subscription && subscription.expiresAt.getTime() > Date.now()) ||
-    (user.freeTrialStart && isFreeTrialActive(user))
+    isFreeTrialActive(user)
   );
 }
 
