@@ -53,11 +53,11 @@ export default function FullHeader({ isAuthenticated }: HeaderProps) {
                   </Link>
                 </DropdownMenuItem>
               )}
-              <DropdownMenuItem asChild>
+              {/* <DropdownMenuItem asChild>
                 <Link href="/pricing">
                   <span>Pricing</span>
                 </Link>
-              </DropdownMenuItem>
+              </DropdownMenuItem> */}
               <DropdownMenuItem asChild>
                 <Link href="/contact">
                   <span>Contact</span>

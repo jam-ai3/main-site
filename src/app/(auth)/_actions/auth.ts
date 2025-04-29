@@ -2,7 +2,7 @@
 
 import db from "@/db/db";
 import { hashPassword, signToken, verifyPassword } from "@/lib/auth";
-import { AUTH_REDIRECT_PATH, PRICING_PATH } from "@/lib/constants";
+import { AUTH_REDIRECT_PATH, ROOT_PATH } from "@/lib/constants";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -66,6 +66,8 @@ export async function handleRegister(_: unknown, data: FormData) {
     data: {
       email: result.data.email,
       password: hashedPassword,
+      // remove line on 01/01/2025
+      freeTrialStart: new Date(),
     },
   });
 
@@ -85,5 +87,5 @@ export async function handleRegister(_: unknown, data: FormData) {
     path: "/",
   });
 
-  redirect(PRICING_PATH);
+  redirect(ROOT_PATH);
 }

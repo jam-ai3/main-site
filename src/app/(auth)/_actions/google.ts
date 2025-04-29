@@ -27,6 +27,8 @@ export async function handleGoogleLogin(token: string) {
       data: {
         email: payload.email!,
         password: "", // No password needed for OAuth users
+        // remove line on 01/01/2025
+        freeTrialStart: new Date(),
       },
     });
   }

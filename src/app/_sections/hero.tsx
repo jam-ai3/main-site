@@ -9,7 +9,7 @@ export default async function HeroSection() {
 
   return (
     <section
-      className="h-screen grid place-items-center"
+      className="place-items-center grid h-screen"
       style={{
         backgroundImage: "url('/hero-bg-3.jpg')",
         backgroundSize: "cover",
@@ -17,12 +17,12 @@ export default async function HeroSection() {
         backgroundPositionY: "bottom",
       }}
     >
-      <div className="flex flex-col gap-6 items-center">
-        <p className="text-muted-foreground italic mb-[-24px]">
+      <div className="flex flex-col items-center gap-6">
+        <p className="mb-[-24px] text-muted-foreground italic">
           Write, study, organize
         </p>
-        <h1 className="text-4xl font-bold">AI Tools for Students</h1>
-        <p className="text-muted-foreground text-lg max-w-3xl text-center mx-8 md:mx-0">
+        <h1 className="font-bold text-4xl">AI Tools for Students</h1>
+        <p className="mx-8 md:mx-0 max-w-3xl text-muted-foreground text-lg text-center">
           Prepare for your classes with a suite of AI-powered tools designed to
           help you take on your courses with ease
         </p>
@@ -34,8 +34,11 @@ export default async function HeroSection() {
             </Link>
           </Button>
           <Button asChild variant="accent">
-            <Link href={session ? "/pricing" : "/register"}>
-              <span>Get Started</span>
+            <Link
+              href={session ? "https://write.jamai.dev" : "/register"}
+              target={session ? "_blank" : ""}
+            >
+              <span>{session ? "Start Writing" : "Get Started"}</span>
               <ArrowRight />
             </Link>
           </Button>

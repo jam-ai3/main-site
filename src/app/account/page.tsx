@@ -3,8 +3,8 @@ import Header from "@/components/header/header";
 import InfoLine from "@/components/info-line";
 import db from "@/db/db";
 import { getSession } from "@/lib/auth";
-import { UNAUTH_REDIRECT_PATH, WEEK_IN_MS } from "@/lib/constants";
-import { capitalize } from "@/lib/utils";
+import { FREE_TRIAL_END, UNAUTH_REDIRECT_PATH } from "@/lib/constants";
+import { capitalize, isFreeTrialActive } from "@/lib/utils";
 import { Subscription, User } from "@prisma/client";
 import { redirect } from "next/navigation";
 import LogoutButton from "./_components/logout-button";
@@ -12,10 +12,7 @@ import LogoutButton from "./_components/logout-button";
 function formatSubscriptionType(user: User, subscription: Subscription | null) {
   if (subscription && subscription.expiresAt.getTime() > Date.now())
     return capitalize(subscription.type);
-  return user.freeTrialStart &&
-    user.freeTrialStart.getTime() + WEEK_IN_MS > Date.now()
-    ? "Free Trial"
-    : "None";
+  return isFreeTrialActive(user) ? "Free Trial" : "None";
 }
 
 function formatSubscriptionExpires(
@@ -25,9 +22,7 @@ function formatSubscriptionExpires(
   if (subscription && subscription.expiresAt.getTime() > Date.now())
     return subscription.expiresAt.toLocaleDateString();
   if (user.freeTrialStart === null) return "N/A";
-  return new Date(
-    user.freeTrialStart.getTime() + WEEK_IN_MS
-  ).toLocaleDateString();
+  return FREE_TRIAL_END.toLocaleDateString();
 }
 
 export default async function AccountPage() {

@@ -31,7 +31,7 @@ export default function FullHeader({ isAuthenticated }: HeaderProps) {
         </Link>
         <ul className="flex justify-self-center gap-6 text-muted-foreground text-sm">
           {/* <HeaderLink href="/about" title="About" /> */}
-          <HeaderLink href="/pricing" title="Pricing" />
+          {/* <HeaderLink href="/pricing" title="Pricing" /> */}
           <HeaderLink href="/contact" title="Contact" />
           {isAuthenticated && <HeaderLink href="/account" title="Account" />}
           {isAuthenticated && <HeaderLink href="/feedback" title="Feedback" />}
