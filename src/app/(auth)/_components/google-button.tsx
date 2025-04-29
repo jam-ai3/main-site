@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { handleGoogleLogin } from "../_actions/google";
-import { ROOT_PATH } from "@/lib/constants";
 
 declare global {
   interface Window {
@@ -12,7 +11,13 @@ declare global {
   }
 }
 
-export default function GoogleSignInButton() {
+type GoogleSignInButtonProps = {
+  redirectTo: string;
+};
+
+export default function GoogleSignInButton({
+  redirectTo,
+}: GoogleSignInButtonProps) {
   useEffect(() => {
     /* Load Google's OAuth script */
     const script = document.createElement("script");
@@ -27,7 +32,7 @@ export default function GoogleSignInButton() {
     try {
       await handleGoogleLogin(response.credential);
     } finally {
-      window.location.replace(ROOT_PATH);
+      window.location.replace(redirectTo);
     }
   };
 

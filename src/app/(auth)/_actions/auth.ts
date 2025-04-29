@@ -2,7 +2,6 @@
 
 import db from "@/db/db";
 import { hashPassword, signToken, verifyPassword } from "@/lib/auth";
-import { AUTH_REDIRECT_PATH, ROOT_PATH } from "@/lib/constants";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -12,7 +11,11 @@ const loginSchema = z.object({
   password: z.string().min(8),
 });
 
-export async function handleLogin(_: unknown, data: FormData) {
+export async function handleLogin(
+  redirectTo: string,
+  _: unknown,
+  data: FormData
+) {
   const result = loginSchema.safeParse(Object.fromEntries(data.entries()));
   if (!result.success) return result.error.formErrors.fieldErrors;
 
@@ -40,7 +43,7 @@ export async function handleLogin(_: unknown, data: FormData) {
     path: "/",
   });
 
-  redirect(AUTH_REDIRECT_PATH);
+  redirect(redirectTo);
 }
 
 const registerSchema = z.object({
@@ -49,7 +52,11 @@ const registerSchema = z.object({
   confirmPassword: z.string().min(8),
 });
 
-export async function handleRegister(_: unknown, data: FormData) {
+export async function handleRegister(
+  redirectTo: string,
+  _: unknown,
+  data: FormData
+) {
   const result = registerSchema.safeParse(Object.fromEntries(data.entries()));
   if (!result.success) return result.error.formErrors.fieldErrors;
 
@@ -87,5 +94,5 @@ export async function handleRegister(_: unknown, data: FormData) {
     path: "/",
   });
 
-  redirect(ROOT_PATH);
+  redirect(redirectTo);
 }

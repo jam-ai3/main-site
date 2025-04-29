@@ -8,15 +8,33 @@ import { useActionState } from "react";
 import { handleRegister } from "../_actions/auth";
 import AccentLink from "@/components/accent-link";
 import GoogleSignInButton from "../_components/google-button";
+import { useSearchParams } from "next/navigation";
+
+function formatFrom(from: string | null) {
+  switch (from) {
+    case "write":
+      return "https://write.jamai.dev";
+    case "study":
+      return "https://study.jamai.dev";
+    default:
+      return "/";
+  }
+}
 
 export default function Registerpage() {
-  const [error, action, isPending] = useActionState(handleRegister, {});
+  const search = useSearchParams();
+  const from = search.get("from");
+  const fromUrl = formatFrom(from);
+  const [error, action, isPending] = useActionState(
+    handleRegister.bind(null, fromUrl),
+    {}
+  );
 
   return (
-    <main className="h-screen grid place-items-center bg-secondary">
+    <main className="place-items-center grid bg-secondary h-screen">
       <form
         action={action}
-        className="bg-background rounded-md p-6 flex flex-col gap-4 w-3/4 md:w-2/5"
+        className="flex flex-col gap-4 bg-background p-6 rounded-md w-3/4 md:w-2/5"
       >
         <h1 className="mx-auto font-bold text-2xl">Register</h1>
         <div className="flex flex-col gap-2">
@@ -68,7 +86,7 @@ export default function Registerpage() {
             </>
           )}
         </Button>
-        <GoogleSignInButton />
+        <GoogleSignInButton redirectTo={fromUrl} />
         <div className="flex gap-1 text-sm">
           <p className="text-muted-foreground">Already have an account?</p>
           <AccentLink href="/login">Login</AccentLink>
