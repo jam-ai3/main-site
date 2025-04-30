@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "JAMAi",
+  title: "jamAI",
   description: "Study tools for students",
 };
 

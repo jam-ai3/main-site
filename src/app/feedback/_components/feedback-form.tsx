@@ -39,7 +39,7 @@ export default function FeedbackForm({
       <div>
         <p className="font-semibold text-lg">Rate us</p>
         <p className="text-muted-foreground">
-          How has your JAMAi experience been?
+          How has your jamAI experience been?
         </p>
       </div>
       <RatingView rating={rating} handleSelectRating={handleSelectRating} />

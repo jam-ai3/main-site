@@ -28,7 +28,7 @@ export default function FullHeader({ isAuthenticated }: HeaderProps) {
             width={LOGO_SIZE}
             height={LOGO_SIZE}
           />
-          <span className="font-semibold text-xl">JAMAi</span>
+          <span className="font-semibold text-xl">jamAI</span>
         </Link>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
