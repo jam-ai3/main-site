@@ -3,6 +3,7 @@
 import db from "@/db/db";
 import { Rating } from "../_components/feedback-form";
 import { redirect } from "next/navigation";
+import { sendFeedbackEmail } from "./email";
 
 type CreateReviewResponse = {
   rating?: string;
@@ -12,7 +13,8 @@ type CreateReviewResponse = {
 export async function createReview(
   userId: string,
   rating: Rating | null,
-  message: string
+  message: string,
+  email: string
 ): Promise<CreateReviewResponse> {
   if (!rating) return { rating: "Rating is required" };
   await db.review.create({
@@ -22,5 +24,6 @@ export async function createReview(
       userId,
     },
   });
+  sendFeedbackEmail(email)
   redirect("/feedback");
 }

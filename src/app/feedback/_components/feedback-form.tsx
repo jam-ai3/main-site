@@ -13,16 +13,18 @@ export type Rating = 1 | 2 | 3 | 4 | 5;
 type FeedbackFormProps = {
   userId: string;
   disabled?: boolean;
+  email: string;
 };
 
 export default function FeedbackForm({
   userId,
   disabled = false,
+  email
 }: FeedbackFormProps) {
   const [rating, setRating] = useState<Rating | null>(null);
   const [message, setMessage] = useState<string>("");
   const [error, action, isPending] = useActionState(
-    createReview.bind(null, userId, rating, message),
+    createReview.bind(null, userId, rating, message, email),
     { rating: "" }
   );
 
