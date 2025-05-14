@@ -1,3 +1,4 @@
+"use server"
 import {
     Html,
     Head,
@@ -11,7 +12,20 @@ import {
     Button,
 } from "@react-email/components";
 
-export default function ContactAutoReply(name: string) {
+import { z } from "zod";
+import { Resend } from 'resend';
+// import db from "@/db/db";
+import { ACCENT_COLOR } from "@/lib/constants";
+import db from "@/db/db";
+
+const emailFormSchema = z.object({
+    name: z.string().min(1),
+    email: z.string().email(),
+    message: z.string().min(1),
+});
+
+
+export default function ContactAutoReply({ name }: { name: string }) {
     //TODO: colors need to be updated to match the rest of the site
     return (
         <Html>
@@ -27,7 +41,7 @@ export default function ContactAutoReply(name: string) {
                         margin: "0 auto",
                     }}
                 >
-                    <Heading style={{ fontSize: "24px", marginBottom: "12px" }}>
+                    <Heading style={{ textAlign: "center", fontSize: "24px", marginBottom: "12px" }}>
                         Hi {name}, We've received your message 📨
                     </Heading>
                     <Text style={{ fontSize: "16px", lineHeight: "1.6" }}>
@@ -36,11 +50,11 @@ export default function ContactAutoReply(name: string) {
                     <Text style={{ fontSize: "16px", lineHeight: "1.6" }}>
                         While you wait, feel free to explore the writing space or check out our latest updates.
                     </Text>
-                    <div style={{ margin: "24px 0" }}>
+                    <div style={{ textAlign: "center", margin: "24px 0" }}>
                         <Button
                             href="https://write.jamai.dev/"
                             style={{
-                                backgroundColor: "#4f46e5",
+                                backgroundColor: ACCENT_COLOR,
                                 color: "#ffffff",
                                 fontSize: "16px",
                                 padding: "12px 24px",
@@ -52,10 +66,41 @@ export default function ContactAutoReply(name: string) {
                     </div>
                     <Hr />
                     <Text style={{ fontSize: "12px", color: "#888" }}>
-                        If you didn’t submit a message on our website, you can ignore this email or contact us directly at contact@jamai.dev.
+                        If you didn’t submit a message, you can ignore this email or contact us at{" "} 
+                        <Link href="mailto:contact@jamai.dev">contact@jamai.dev</Link>.
                     </Text>
                 </Container>
             </Body>
         </Html>
     );
+}
+
+
+
+
+export async function sendContactEmail(_: unknown, data: FormData) {
+    const result = emailFormSchema.safeParse(Object.fromEntries(data.entries()));
+    if (!result.success) return result.error.formErrors.fieldErrors;
+    const { name, email, message } = result.data;
+
+    await db.message.create({ data: { name, email, message } })
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    
+    try {
+        await resend.emails.send({
+            from: process.env.JAMAI_EMAIL as string,
+            to: email,
+            subject: "Thanks for reaching out to jamAI — we'll get back to you shortly",
+            react: (
+                <ContactAutoReply name={name} />
+            ),
+            text: "Thanks for reaching out to jamAI — we'll get back to you shortly",
+        })
+    } catch {
+        return { error: "Failed to send email" };
+    }
+
+
+    return { error: undefined };
 }

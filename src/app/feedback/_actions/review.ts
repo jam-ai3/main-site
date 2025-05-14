@@ -3,7 +3,7 @@
 import db from "@/db/db";
 import { Rating } from "../_components/feedback-form";
 import { redirect } from "next/navigation";
-import { sendFeedbackEmail } from "./email";
+import { sendFeedbackEmail } from "@/email/feedback-auto-reply";
 
 type CreateReviewResponse = {
   rating?: string;

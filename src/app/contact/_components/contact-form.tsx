@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useActionState, useEffect, useState } from "react";
-import { sendEmail } from "../_actions/email";
 import { Label } from "@/components/ui/label";
 import { Loader2, Mail } from "lucide-react";
 import {
@@ -14,6 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { sendContactEmail } from "@/email/contact-auto-reply";
 
 type ContactFormProps = {
   title?: string;
@@ -32,7 +32,7 @@ export function ContactForm({ title, description }: ContactFormProps) {
     EmailError,
     (payload: FormData) => void,
     boolean
-  ] = useActionState(sendEmail, {});
+  ] = useActionState(sendContactEmail, {});
   const [sendStatus, setSendStatus] = useState<
     "success" | "error" | "none" | "sending"
   >("none");

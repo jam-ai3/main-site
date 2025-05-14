@@ -1,11 +1,11 @@
 "use server";
 
 import db from "@/db/db";
+import { sendRegisterEmail } from "@/email/register-auto-reply";
 import { hashPassword, signToken, verifyPassword } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
-import { sendWelcomeEmail } from "../register/_actions/sendWelcomeEmail";
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -94,6 +94,6 @@ export async function handleRegister(
     domain: process.env.DOMAIN!,
     path: "/",
   });
-  sendWelcomeEmail(result.data.email);
+  sendRegisterEmail(result.data.email);
   redirect(redirectTo);
 }
