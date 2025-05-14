@@ -30,7 +30,7 @@ export default async function ContactAutoReply({ name }: { name: string }) {
     return (
         <Html>
             <Head />
-            <Preview>Thanks for reaching out to jamAI — we'll get back to you soon</Preview>
+            <Preview>Thanks for reaching out to jamAI — we&apos;ll get back to you soon</Preview>
             <Body style={{ backgroundColor: "#f9fafb", padding: "40px 0", fontFamily: "sans-serif" }}>
                 <Container
                     style={{
@@ -42,10 +42,10 @@ export default async function ContactAutoReply({ name }: { name: string }) {
                     }}
                 >
                     <Heading style={{ textAlign: "center", fontSize: "24px", marginBottom: "12px" }}>
-                        Hi {name}, We've received your message 📨
+                        Hi {name}, We&apos;ve received your message 📨
                     </Heading>
                     <Text style={{ fontSize: "16px", lineHeight: "1.6" }}>
-                        Thanks for contacting jamAI! We’ve received your message and will get back to you as soon as we can — usually within 48 hours.
+                        Thanks for contacting jamAI! We&apos;ve received your message and will get back to you as soon as we can — usually within 48 hours.
                     </Text>
                     <Text style={{ fontSize: "16px", lineHeight: "1.6" }}>
                         While you wait, feel free to explore the writing space or check out our latest updates.
@@ -66,7 +66,7 @@ export default async function ContactAutoReply({ name }: { name: string }) {
                     </div>
                     <Hr />
                     <Text style={{ fontSize: "12px", color: "#888" }}>
-                        If you didn’t submit a message, you can ignore this email or contact us at{" "} 
+                        If you didn&apos;t submit a message, you can ignore this email or contact us at{" "} 
                         <Link href="mailto:contact@jamai.dev">contact@jamai.dev</Link>.
                     </Text>
                 </Container>

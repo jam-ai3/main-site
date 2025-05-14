@@ -1,4 +1,3 @@
-import { render } from "@react-email/render";
 import { Resend } from "resend";
 
 
@@ -35,10 +34,10 @@ export default async function RegisterAutoReply() {
                         Welcome to jamAI 👋
                     </Heading>
                     <Text style={{ fontSize: "16px", lineHeight: "1.6" }}>
-                        We're so excited you've joined us! jamAI is your intelligent writing space.
+                        We&apos;re so excited you&apos;ve joined us! jamAI is your intelligent writing space.
                     </Text>
                     <Text style={{ fontSize: "16px", lineHeight: "1.6" }}>
-                        Whether you’re writing an essay, assignment, or personal piece, jamAI helps you reword, clarify, and improve your writing without losing your voice.
+                        Whether you&apos;re writing an essay, assignment, or personal piece, jamAI helps you reword, clarify, and improve your writing without losing your voice.
                     </Text>
 
                     <div style={{textAlign: "center", margin: "24px 0" }}>
