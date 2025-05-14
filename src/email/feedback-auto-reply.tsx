@@ -15,7 +15,7 @@ import {
 
 import { Resend } from "resend";
 
-export default function FeedbackAutoReply() {
+export default async function FeedbackAutoReply() {
     return (
         <Html>
             <Head />

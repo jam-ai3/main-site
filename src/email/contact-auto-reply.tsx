@@ -25,7 +25,7 @@ const emailFormSchema = z.object({
 });
 
 
-export default function ContactAutoReply({ name }: { name: string }) {
+export default async function ContactAutoReply({ name }: { name: string }) {
     //TODO: colors need to be updated to match the rest of the site
     return (
         <Html>

@@ -16,7 +16,7 @@ import {
 } from "@react-email/components";
 import { ACCENT_COLOR } from "@/lib/constants";
 
-export default function RegisterAutoReply() {
+export default async function RegisterAutoReply() {
     return (
         <Html>
             <Head />
