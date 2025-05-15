@@ -9,6 +9,8 @@ export const YEAR_IN_MS = 1000 * 60 * 60 * 24 * 365;
 export const MD_WIDTH = 768;
 export const FREE_TRIAL_END = new Date("2026-01-01");
 
+export const ACCENT_COLOR = "#049904"
+
 export type Product = {
   id: string;
   name: string;

@@ -57,3 +57,10 @@ model Review {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
+
+model Message {
+  id String @id @default(uuid())
+  name String
+  email String
+  message String
+}

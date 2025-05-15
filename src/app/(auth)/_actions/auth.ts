@@ -1,6 +1,7 @@
 "use server";
 
 import db from "@/db/db";
+import { sendRegisterEmail } from "@/email/register-auto-reply";
 import { hashPassword, signToken, verifyPassword } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -93,6 +94,6 @@ export async function handleRegister(
     domain: process.env.DOMAIN!,
     path: "/",
   });
-
+  sendRegisterEmail(result.data.email);
   redirect(redirectTo);
 }

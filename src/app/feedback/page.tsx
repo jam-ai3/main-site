@@ -13,12 +13,11 @@ export default async function FeedbackPage() {
       userId: session?.id ?? "",
     },
   });
-
   return (
     <>
       <Header />
       <main className="flex flex-col gap-8 px-6 pt-32 min-h-screen">
-        {session && <FeedbackForm userId={session.id} disabled={!!review} />}
+        {session && <FeedbackForm userId={session.id} disabled={!!review} email={session.email}/>}
       </main>
       <Footer />
     </>
