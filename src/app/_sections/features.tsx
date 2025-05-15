@@ -28,7 +28,7 @@ export default async function FeaturesSection() {
         <Card className="w-full shadow-lg border border-gray-200 mt-8">
           <CardContent className="p-0">
             <video autoPlay loop muted playsInline className="w-full h-auto rounded-lg">
-              <source src="/Grammar2.mp4" type="video/mp4"></source>
+              <source src="/Grammar.mp4" type="video/mp4"></source>
             </video>
 
           </CardContent>
