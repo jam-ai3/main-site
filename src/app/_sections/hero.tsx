@@ -19,12 +19,11 @@ export default async function HeroSection() {
     >
       <div className="flex flex-col items-center gap-6">
         <p className="mb-[-24px] text-muted-foreground italic">
-          Write, study, organize
+          Write better. Stay authentic.
         </p>
-        <h1 className="font-bold text-4xl">AI Tools for Students</h1>
+        <h1 className="font-bold text-4xl">AI Writing Tools for Students</h1>
         <p className="mx-8 md:mx-0 max-w-3xl text-muted-foreground text-lg text-center">
-          Prepare for your classes with a suite of AI-powered tools designed to
-          help you take on your courses with ease
+          Sharpen your writing with AI tools designed to help you reword, clarify, and improve, while keeping your voice.
         </p>
         <div className="flex gap-4">
           <Button asChild>
