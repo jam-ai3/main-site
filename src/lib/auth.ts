@@ -31,9 +31,9 @@ export async function verifyToken(token: string) {
   }
 }
 
-export async function logout() {
+export async function logout(path?: string) {
   (await cookies()).delete(process.env.JWT_KEY!);
-  redirect(UNAUTH_REDIRECT_PATH);
+  redirect(path ?? UNAUTH_REDIRECT_PATH);
 }
 
 export async function hashPassword(password: string) {
@@ -64,8 +64,4 @@ export async function getSession() {
     return decoded;
   }
   return null;
-}
-
-export async function deleteUser() {
-
 }

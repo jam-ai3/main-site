@@ -59,8 +59,15 @@ model Review {
 }
 
 model Message {
-  id String @id @default(uuid())
-  name String
-  email String
+  id      String @id @default(uuid())
+  name    String
+  email   String
   message String
+}
+
+model DeleteResponse {
+  id          String @id @default(uuid())
+  email       String
+  questionOne String
+  message     String
 }

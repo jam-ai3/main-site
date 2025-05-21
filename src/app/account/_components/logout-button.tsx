@@ -3,12 +3,13 @@
 import { Button } from "@/components/ui/button";
 import { logout } from "@/lib/auth";
 import { LogOutIcon } from "lucide-react";
+import MotionButtonAccount from "./motion-button-account";
 
 export default function LogoutButton() {
   return (
-    <Button variant="default" onClick={logout}>
+    <MotionButtonAccount variant="default" onClick={logout}>
       <span>Logout</span>
       <LogOutIcon />
-    </Button>
+    </MotionButtonAccount>
   );
 }
