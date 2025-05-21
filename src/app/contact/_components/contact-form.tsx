@@ -14,6 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { sendContactEmail } from "@/email/contact-auto-reply";
+import { getUserEmail } from "../_actions/getUserEmail";
 
 type ContactFormProps = {
   title?: string;
@@ -31,11 +32,17 @@ export function ContactForm({ title, description }: ContactFormProps) {
   const [error, action, isPending]: [
     EmailError,
     (payload: FormData) => void,
-    boolean
+    boolean,
   ] = useActionState(sendContactEmail, {});
   const [sendStatus, setSendStatus] = useState<
     "success" | "error" | "none" | "sending"
   >("none");
+
+  const [userEmail, setUserEmail] = useState<string | null>(null);
+
+  useEffect(() => {
+    getUserEmail().then(setUserEmail);
+  }, []);
 
   useEffect(() => {
     if (isPending) return setSendStatus("sending");
@@ -91,7 +98,13 @@ export function ContactForm({ title, description }: ContactFormProps) {
             </div>
             <div className="space-y-2 flex-1">
               <Label htmlFor="email">Email</Label>
-              <Input type="email" placeholder="jdoe@email.com" name="email" />
+              <Input
+                type="email"
+                placeholder="jdoe@email.com"
+                name="email"
+                value={userEmail || ""}
+                onChange={(e) => setUserEmail(e.target.value)}
+              />
               {error.email && <p className="text-destructive">{error.email}</p>}
             </div>
           </div>
