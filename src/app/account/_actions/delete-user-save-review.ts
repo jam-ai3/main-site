@@ -14,7 +14,7 @@ export async function deleteUserSaveReview({questionOne, message} : deleteUserSa
 
 export async function deleteUser() {
     const context = await getSession()
-    const user = await db.user.delete({
+    await db.user.delete({
         where: {
             id: context?.id
         }
@@ -24,7 +24,7 @@ export async function deleteUser() {
 
 export async function saveReview(questionOne: string, message: string) {
     const context = await getSession()
-    const review = await db.deleteResponse.create({
+    await db.deleteResponse.create({
         data: {
             questionOne: questionOne,
             message: message,

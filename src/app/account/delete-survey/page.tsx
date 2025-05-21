@@ -13,10 +13,8 @@ import AccountDeleteButton from "../_components/account-delete-button";
 import MotionButtonAccount from "../_components/motion-button-account";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useFormState } from "react-dom";
 
 export default function DeleteSurvey() {
-  const [isDeleting, setIsDeleting] = useState(false);
   const [questionOne, setQuestionOne] = useState<string | undefined>();
   const [message, setMessage] = useState("");
   const router = useRouter();
@@ -106,7 +104,7 @@ export default function DeleteSurvey() {
               }}
             >
               {" "}
-              I'll give it another try
+              I&apos;ll give it another try
             </MotionButtonAccount>
             <AccountDeleteButton
               questionOne={questionOne || ""}

@@ -1,6 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { logout } from "@/lib/auth";
 import { LogOutIcon } from "lucide-react";
 import MotionButtonAccount from "./motion-button-account";

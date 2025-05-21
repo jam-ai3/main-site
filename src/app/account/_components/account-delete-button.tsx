@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Trash2Icon } from "lucide-react";
 import MotionButtonAccount from "./motion-button-account";
-import { useRouter } from "next/navigation";
 import { deleteUserSaveReview } from "../_actions/delete-user-save-review";
 import { logout } from "@/lib/auth";
 
@@ -26,8 +25,6 @@ export default function AccountDeleteButton({
   message,
   ...props
 }: AccountDeleteButtonProps) {
-  const router = useRouter();
-
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
