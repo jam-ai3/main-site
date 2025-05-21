@@ -8,6 +8,7 @@ import { capitalize, isFreeTrialActive } from "@/lib/utils";
 import { Subscription, User } from "@prisma/client";
 import { redirect } from "next/navigation";
 import LogoutButton from "./_components/logout-button";
+import PreDeleteButton from "./_components/pre-delete-button";
 
 function formatSubscriptionType(user: User, subscription: Subscription | null) {
   if (subscription && subscription.expiresAt.getTime() > Date.now())
@@ -55,11 +56,14 @@ export default async function AccountPage() {
               subscription?.isActive === undefined
                 ? "N/A"
                 : subscription.isActive
-                ? "Yes"
-                : "No"
+                  ? "Yes"
+                  : "No"
             }
           />
-          <LogoutButton />
+          <div className="flex flex-col gap-4 w-fit">
+            <LogoutButton />
+            <PreDeleteButton />
+          </div>
         </div>
       </main>
       <Footer absolute />
