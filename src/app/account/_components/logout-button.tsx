@@ -1,14 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { logout } from "@/lib/auth";
 import { LogOutIcon } from "lucide-react";
+import MotionButtonAccount from "./motion-button-account";
 
 export default function LogoutButton() {
   return (
-    <Button variant="default" onClick={logout}>
-      <span>Logout</span>
+    <MotionButtonAccount variant="default" onClick={logout} className="flex-1">
       <LogOutIcon />
-    </Button>
+      <span>Logout</span>
+    </MotionButtonAccount>
   );
 }
