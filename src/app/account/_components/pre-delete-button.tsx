@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function PreDeleteButton() {
@@ -7,13 +8,13 @@ export default function PreDeleteButton() {
   return (
     <Button
       variant="destructive"
-      className="bg-red-600 hover:bg-red-700 min-w-[100px] text-white"
+      className="flex-1 bg-red-600 hover:bg-red-700 min-w-[100px] text-white"
       onClick={() => {
         router.push("/account/delete-survey");
       }}
     >
-      {" "}
-      Delete Account
+      <Trash />
+      <span>Delete Account</span>
     </Button>
   );
 }

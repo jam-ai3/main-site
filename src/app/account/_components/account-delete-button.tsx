@@ -29,9 +29,8 @@ export default function AccountDeleteButton({
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <MotionButtonAccount {...props} variant="destructive">
-          <span className="flex items-center gap-2">
-            Delete Account <Trash2Icon />
-          </span>
+          <Trash2Icon />
+          <span className="flex items-center gap-2">Delete Account</span>
         </MotionButtonAccount>
       </AlertDialogTrigger>
       <AlertDialogContent>

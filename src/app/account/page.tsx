@@ -60,7 +60,7 @@ export default async function AccountPage() {
                   : "No"
             }
           />
-          <div className="flex flex-col gap-4 w-fit">
+          <div className="flex gap-4 w-full">
             <LogoutButton />
             <PreDeleteButton />
           </div>

@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Card,
   CardContent,
@@ -13,6 +14,7 @@ import AccountDeleteButton from "../_components/account-delete-button";
 import MotionButtonAccount from "../_components/motion-button-account";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 
 export default function DeleteSurvey() {
   const [questionOne, setQuestionOne] = useState<string | undefined>();
@@ -20,67 +22,87 @@ export default function DeleteSurvey() {
   const router = useRouter();
 
   return (
-    <div className="flex h-screen justify-center bg-gray-50">
-      <Card className="w-full max-w-lg shodow-md">
+    <div className="flex justify-center bg-secondary pt-16 h-screen">
+      <Card className="w-2/5 max-w-[800px]">
         <CardHeader>
-          <CardTitle className="text-2xl">User Satisfaction Survey</CardTitle>
+          <CardTitle className="text-2xl text-center">
+            User Satisfaction Survey
+          </CardTitle>
         </CardHeader>
 
         <CardContent className="p-8">
           <div className="space-y-6">
             <div>
-              <Label className="mb-2 block text-xl font-semibold">
-                {" "}
+              <Label className="block mb-6 font-semibold text-xl">
                 What is the reason you decided to leave jamAI?
               </Label>
               <RadioGroup className="gap-4 mt-2">
-                <div className="flex items-center space-x-2 ">
+                <div className="flex items-center space-x-2">
                   <RadioGroupItem
                     checked={questionOne === "no-need"}
                     onClick={() => setQuestionOne("no-need")}
                     value={"no-need"}
                   />
-                  <Label className="text-lg">
+                  <Label
+                    className="cursor-pointer"
+                    onClick={() => setQuestionOne("no-need")}
+                  >
                     I no longer need the service
                   </Label>
                 </div>
 
-                <div className="flex items-center space-x-2 ">
+                <div className="flex items-center space-x-2">
                   <RadioGroupItem
                     checked={questionOne === "better-alternative"}
                     onClick={() => setQuestionOne("better-alternative")}
                     value={"better-alternative"}
                   />
-                  <Label className="text-lg">
+                  <Label
+                    className="cursor-pointer"
+                    onClick={() => setQuestionOne("better-alternative")}
+                  >
                     I found a better alternative
                   </Label>
                 </div>
 
-                <div className="flex items-center space-x-2 ">
+                <div className="flex items-center space-x-2">
                   <RadioGroupItem
                     checked={questionOne === "too-expensive"}
                     onClick={() => setQuestionOne("too-expensive")}
                     value={"too-expensive"}
                   />
-                  <Label className="text-lg">It is too expensive</Label>
+                  <Label
+                    className="cursor-pointer"
+                    onClick={() => setQuestionOne("too-expensive")}
+                  >
+                    It is too expensive
+                  </Label>
                 </div>
 
-                <div className="flex items-center space-x-2 ">
+                <div className="flex items-center space-x-2">
                   <RadioGroupItem
                     checked={questionOne === "privacy-concern"}
                     onClick={() => setQuestionOne("privacy-concern")}
                     value={"privacy-concern"}
                   />
-                  <Label className="text-lg">Privacy or data concerns</Label>
+                  <Label
+                    className="cursor-pointer"
+                    onClick={() => setQuestionOne("privacy-concern")}
+                  >
+                    Privacy or data concerns
+                  </Label>
                 </div>
 
-                <div className="flex items-center space-x-2 ">
+                <div className="flex items-center space-x-2">
                   <RadioGroupItem
                     checked={questionOne === "not-helpful"}
                     onClick={() => setQuestionOne("not-helpful")}
                     value={"not-helpful"}
                   />
-                  <Label className="text-lg">
+                  <Label
+                    className="cursor-pointer"
+                    onClick={() => setQuestionOne("not-helpful")}
+                  >
                     Did not find it helpful or effective
                   </Label>
                 </div>
@@ -103,8 +125,8 @@ export default function DeleteSurvey() {
                 router.push("/");
               }}
             >
-              {" "}
-              I&apos;ll give it another try
+              <ArrowLeft />
+              <span>I&apos;ll give it another try</span>
             </MotionButtonAccount>
             <AccountDeleteButton
               questionOne={questionOne || ""}

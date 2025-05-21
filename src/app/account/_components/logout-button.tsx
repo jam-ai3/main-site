@@ -6,9 +6,9 @@ import MotionButtonAccount from "./motion-button-account";
 
 export default function LogoutButton() {
   return (
-    <MotionButtonAccount variant="default" onClick={logout}>
-      <span>Logout</span>
+    <MotionButtonAccount variant="default" onClick={logout} className="flex-1">
       <LogOutIcon />
+      <span>Logout</span>
     </MotionButtonAccount>
   );
 }

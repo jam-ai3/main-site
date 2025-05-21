@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 const MotionButton = motion(Button);
 
 export default function MotionButtonAccount({ ...props }) {
-  console.log(props);
-
   return (
     <MotionButton
       whileTap={{ scale: 0.9 }}
