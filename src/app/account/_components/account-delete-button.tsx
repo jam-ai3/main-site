@@ -13,7 +13,7 @@ import {
 import { Trash2Icon } from "lucide-react";
 import MotionButtonAccount from "./motion-button-account";
 import { deleteUserSaveReview } from "../_actions/delete-user-save-review";
-import { logout } from "@/lib/auth";
+import { logoutAndRedirect } from "@/lib/auth";
 
 type AccountDeleteButtonProps = {
   questionOne: string;
@@ -54,7 +54,7 @@ export default function AccountDeleteButton({
               variant="destructive"
               onClick={async () => {
                 await deleteUserSaveReview({ questionOne, message });
-                await logout("/");
+                await logoutAndRedirect();
               }}
               className="bg-red-600 hover:bg-red-700 min-w-[100px] text-white"
             >

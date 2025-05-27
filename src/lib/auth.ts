@@ -3,7 +3,7 @@
 import { jwtVerify, SignJWT } from "jose";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { UNAUTH_REDIRECT_PATH } from "./constants";
+// import { UNAUTH_REDIRECT_PATH } from "./constants";
 
 const SECRET_KEY = new TextEncoder().encode(process.env.JWT_SECRET!);
 
@@ -31,15 +31,11 @@ export async function verifyToken(token: string) {
   }
 }
 
-export async function logout(path?: string) {
-  (await cookies()).delete(process.env.JWT_KEY!);
-  redirect(path ?? UNAUTH_REDIRECT_PATH);
-}
 
 export async function logoutAndRedirect() {
   (await cookies()).set(process.env.JWT_KEY!, "", {
     path: "/",
-    domain: ".jamai.dev",
+    domain: process.env.NODE_ENV === "development" ? "localhost" : ".jamai.dev",
     expires: new Date(0),
     httpOnly: true,
     secure: true,
