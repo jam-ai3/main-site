@@ -40,10 +40,10 @@ export async function logoutAndRedirect() {
   // (await cookies()).delete(process.env.JWT_KEY!);
   (await cookies()).set(process.env.JWT_KEY!, "", {
     path: "/",
-    expires: new Date(0),
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
+    maxAge: 0,
   });
   
   redirect("/");
