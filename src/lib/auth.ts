@@ -36,7 +36,7 @@ export async function logout(path?: string) {
   redirect(path ?? UNAUTH_REDIRECT_PATH);
 }
 
-export async function logoutAndRedirect(_formData: FormData) {
+export async function logoutAndRedirect() {
   (await cookies()).delete(process.env.JWT_KEY!);
   redirect("/");
 }
