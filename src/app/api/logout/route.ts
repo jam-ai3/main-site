@@ -1,18 +1,16 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
-export async function DELETE() {
+export async function DELETE(req: NextResponse) {
     try {
-        (await cookies()).delete(process.env.JWT_KEY!);
-        const response = new NextResponse(null, { status: 200})
-
+        const response = NextResponse.redirect(new URL("/", req.url));
         response.cookies.set(process.env.JWT_KEY!, "", {
-                path: "/",
-                expires: new Date(0),
-                httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
-                sameSite: "lax",
-              });
+          path: "/",
+          expires: new Date(0),
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "lax",
+        });
 
         return response
     }  catch (error) {
