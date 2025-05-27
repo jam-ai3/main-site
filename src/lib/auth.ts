@@ -39,7 +39,7 @@ export async function logout(path?: string) {
 export async function logoutAndRedirect() {
   (await cookies()).set(process.env.JWT_KEY!, "", {
     path: "/",
-    domain: ".jamai.dev",
+    domain: process.env.NODE_ENV === "development" ? "localhost" : ".jamai.dev",
     expires: new Date(0),
     httpOnly: true,
     secure: true,
