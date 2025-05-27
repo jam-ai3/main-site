@@ -36,6 +36,11 @@ export async function logout(path?: string) {
   redirect(path ?? UNAUTH_REDIRECT_PATH);
 }
 
+export async function logoutAndRedirect() {
+  (await cookies()).delete(process.env.JWT_KEY!);
+  redirect("/");
+}
+
 export async function hashPassword(password: string) {
   const arrayBuffer = await crypto.subtle.digest(
     "SHA-512",
