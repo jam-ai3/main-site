@@ -20,6 +20,7 @@ export default function GoogleSignInButton({
 }: GoogleSignInButtonProps) {
   useEffect(() => {
     /* Load Google's OAuth script */
+    if (process.env.NODE_ENV === "development") return;
     const script = document.createElement("script");
     script.src = "https://accounts.google.com/gsi/client";
     script.async = true;
