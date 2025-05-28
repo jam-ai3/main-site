@@ -3,7 +3,7 @@
 import db from "@/db/db";
 import { sendRegisterEmail } from "@/email/register-auto-reply";
 import { sendResetPasswordEmail } from "@/email/reset-password";
-import { getSession, hashPassword, signToken, verifyPassword } from "@/lib/auth";
+import { hashPassword, signToken, verifyPassword } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
@@ -119,7 +119,6 @@ export async function handleEmailSending( _: unknown, data: FormData): Promise<H
   const user = await db.user.findUnique({
     where: { email: result.data.email },
   });
-  console.log(user)
   if (!user) return { email: "User does not exist" };
 
   const code = generateResetCode();
@@ -170,7 +169,13 @@ const handlPasswordSchema = z.object({
   }),
 })
 
-export async function handlePasswordReset(resetPassId: string, _: unknown, data: FormData){
+type handlePasswordResetProps = {
+  success?: boolean;
+  password?: string[];
+  confirmPassword?: string[]
+}
+
+export async function handlePasswordReset(resetPassId: string, _: unknown, data: FormData) : Promise<handlePasswordResetProps> {
   const result = handlPasswordSchema.safeParse(Object.fromEntries(data.entries()));
   if (!result.success) return {...result.error.formErrors.fieldErrors};
 
@@ -184,6 +189,14 @@ export async function handlePasswordReset(resetPassId: string, _: unknown, data:
     where: { id: resetPassword?.userId }
   })
   
+  const hashedPassword = await hashPassword(result.data.password);
+  await db.user.update({
+    where: { id: user?.id },
+    data: { password: hashedPassword },
+  });
+
+  return {success: true}
+  // redirect("/login")
 
 }
 

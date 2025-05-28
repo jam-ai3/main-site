@@ -1,64 +1,15 @@
-import { useActionState } from "react";
-import { handlePasswordReset } from "../../_actions/auth";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Loader, LogIn } from "lucide-react";
+import db from "@/db/db";
+import { notFound } from "next/navigation";
+import PageContent from "./_components/page-content";
 
-export default function ResetCodePage({ params }: { params: { id: string } }) {
-  const [error, action, isPending] = useActionState(
-    handlePasswordReset.bind(null, params.id),
-    {}
-  );
+export default async function ResetCodePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const passwordReset = await db.resetPassword.findUnique({ where: { id } });
+  if (!passwordReset) return notFound();
 
-  return (
-    <main className="place-items-center grid bg-secondary h-screen">
-      <form
-        action={action}
-        className="flex flex-col gap-4 bg-background p-6 rounded-md w-3/4 md:w-2/5"
-      >
-        <h1 className="mx-auto font-bold text-2xl">Reset Your Password</h1>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="newPassword">New Password</Label>
-          <Input
-            type="password"
-            name="newPassword"
-            id="newPassword"
-            placeholder="Enter new password"
-          />
-          {error?.password && (
-            <p className="text-destructive text-sm">{error.password}</p>
-          )}
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="confirmPassword">Confirm Password</Label>
-          <Input
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-            placeholder="Repeat new password"
-          />
-          {error?.confirmPassword && (
-            <p className="text-destructive text-sm">{error.confirmPassword}</p>
-          )}
-        </div>
-
-        <Button type="submit" disabled={isPending} variant="accent">
-          {isPending ? (
-            <>
-              <span>Resetting...</span>
-              <Loader className="animate-spin" />
-            </>
-          ) : (
-            <>
-              <span>Reset Password</span>
-              <LogIn />
-            </>
-          )}
-        </Button>
-      </form>
-    </main>
-  );
+  return <PageContent id={id} />;
 }

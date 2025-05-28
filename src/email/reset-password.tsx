@@ -7,11 +7,9 @@ import {
   Container,
   Heading,
   Text,
-  Button,
   Hr,
   Link,
 } from "@react-email/components";
-import { ACCENT_COLOR } from "@/lib/constants";
 import { Resend } from "resend";
 
 type ResetPasswordCodeEmailProps = {
