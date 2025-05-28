@@ -75,9 +75,15 @@ export default function LoginPage() {
           )}
         </Button>
         <GoogleSignInButton redirectTo={fromUrl} />
-        <div className="flex gap-1 text-sm">
-          <p className="text-muted-foreground">Don&apos;t have an account?</p>
-          <AccentLink href="/register">Register</AccentLink>
+        <div className="flex gap-2 text-sm">
+          <div className="flex gap-1">
+            <p className="text-muted-foreground">Don&apos;t have an account?</p>
+            <AccentLink href="/register">Register</AccentLink>
+          </div>
+          <div className="flex gap-1">
+            <p className="text-muted-foreground">Forgot password?</p>
+            <AccentLink href="/forgot-password">Reset</AccentLink>
+          </div>
         </div>
       </form>
     </main>
