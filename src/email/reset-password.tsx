@@ -86,7 +86,6 @@ export default function ResetPasswordCodeEmail({
 
 export async function sendResetPasswordEmail(email: string, code: string) {
   const resend = new Resend(process.env.RESEND_API_KEY);
-  console.log("sendResetPasswordEmail", email, code);
   try {
     await resend.emails.send({
       from: process.env.JAMAI_EMAIL || "",

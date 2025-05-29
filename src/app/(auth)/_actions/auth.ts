@@ -7,6 +7,7 @@ import { hashPassword, signToken, verifyPassword } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+const TEN_MINUTES_IN_MS = 10 * 60 * 1000;
 
 const loginSchema = z.object({
   email: z.string().email(),
@@ -128,11 +129,11 @@ export async function handleEmailSending( _: unknown, data: FormData): Promise<H
     where: { userId: user.id },
     update: {
       code: String(code),
-      validUntil: new Date(Date.now() + 10 * 60 * 1000),
+      validUntil: new Date(Date.now() + TEN_MINUTES_IN_MS),
     },
     create: {
       code: String(code),
-      validUntil: new Date(Date.now() + 10 * 60 * 1000),
+      validUntil: new Date(Date.now() + TEN_MINUTES_IN_MS),
       userId: user.id,
     },
   });
@@ -145,18 +146,18 @@ const resetPasswordSchemaVerification = z.object({
   code: z.string(),
 })
 type HandleVerificationProps = {
-  code?: string[];
+  code?: string[] | string;
 
 }
 export async function handleVerification(_: unknown, data: FormData): Promise<HandleVerificationProps> {
   const result = resetPasswordSchemaVerification.safeParse(Object.fromEntries(data.entries()));
-  if (!result.success) return {...result.error.formErrors.fieldErrors};
+  if (!result.success) return result.error.formErrors.fieldErrors;
 
   const resetPassword = await db.resetPassword.findUnique({
     where: { code: result.data.code },
   });
-  if (!resetPassword) return {code: ["Invalid code"]};
-  if (resetPassword.validUntil < new Date()) return {code: ["Code has expired"]};
+  if (!resetPassword) return {code: "Invalid code"};
+  if (resetPassword.validUntil < new Date()) return {code: "Code has expired"};
   redirect(`/reset-code/${resetPassword.id}`);
 }
 
@@ -171,15 +172,15 @@ const handlPasswordSchema = z.object({
 
 type handlePasswordResetProps = {
   success?: boolean;
-  password?: string[];
-  confirmPassword?: string[]
+  password?: string[] | string;
+  confirmPassword?: string[] | string;
 }
 
 export async function handlePasswordReset(resetPassId: string, _: unknown, data: FormData) : Promise<handlePasswordResetProps> {
   const result = handlPasswordSchema.safeParse(Object.fromEntries(data.entries()));
-  if (!result.success) return {...result.error.formErrors.fieldErrors};
+  if (!result.success) return result.error.formErrors.fieldErrors
 
-  if (result.data.password !== result.data.confirmPassword) return { confirmPassword: ["Passwords do not match"] };
+  if (result.data.password !== result.data.confirmPassword) return { confirmPassword: "Passwords do not match" };
 
   const resetPassword = await db.resetPassword.findUnique({
     where: { id: resetPassId }
@@ -196,7 +197,6 @@ export async function handlePasswordReset(resetPassId: string, _: unknown, data:
   });
 
   return {success: true}
-  // redirect("/login")
 
 }
 

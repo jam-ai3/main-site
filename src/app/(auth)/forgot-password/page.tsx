@@ -8,9 +8,7 @@ import { useActionState } from "react";
 import { handleEmailSending } from "../_actions/auth";
 
 export default function ForgotPasswordPage() {
-  const [error, action, isPending] = useActionState(handleEmailSending, {
-    email: [],
-  });
+  const [error, action, isPending] = useActionState(handleEmailSending, {});
 
   return (
     <main className="place-items-center grid bg-secondary h-screen">

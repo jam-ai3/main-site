@@ -7,9 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Loader, LogIn } from "lucide-react";
 
 export default function ResetCodePage() {
-  const [error, action, isPending] = useActionState(handleVerification, {
-    code: [],
-  });
+  const [error, action, isPending] = useActionState(handleVerification, {});
 
   return (
     <main className="place-items-center grid bg-secondary h-screen">

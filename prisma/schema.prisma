@@ -20,7 +20,7 @@ model User {
   subscriptions  Subscription[]
   sales          Sale[]
   reviews        Review[]
-  ResetPasswords ResetPassword[]
+  resetPasswords ResetPassword[]
 }
 
 model Subscription {
