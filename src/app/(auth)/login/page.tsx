@@ -61,6 +61,9 @@ export default function LoginPage() {
             <p className="text-destructive text-sm">{error.password}</p>
           )}
         </div>
+        <AccentLink className="text-sm" href="/forgot-password">
+          Forgot password?
+        </AccentLink>
         <Button type="submit" disabled={isPending} variant="accent">
           {isPending ? (
             <>
@@ -75,7 +78,7 @@ export default function LoginPage() {
           )}
         </Button>
         <GoogleSignInButton redirectTo={fromUrl} />
-        <div className="flex gap-1 text-sm">
+        <div className="flex gap-1">
           <p className="text-muted-foreground">Don&apos;t have an account?</p>
           <AccentLink href="/register">Register</AccentLink>
         </div>
